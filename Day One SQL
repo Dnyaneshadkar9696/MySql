@@ -1,0 +1,332 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch1306          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use batch1306;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_batch1306 |
++---------------------+
+| employee            |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+---------+-------+
+| empId | empName | empCity | email |
++-------+---------+---------+-------+
+|     1 | Ram     | Pune    |       |
+|     2 | Sham    | Mumbai  |       |
+|     3 | Ganesh  | Nagpur  |       |
+|     4 | Hitman  | Shivali |       |
++-------+---------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update employee
+    -> set email = 'ram@gmail.com'
+    -> where empid = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set email = 'shaam@gamil.com'
+    -> where empid = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set email = 'ganesh@gamil.com'
+    -> where empid = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee
+    -> set email = 'hitman@gamil.com'
+    -> where empid = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Sham    | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee
+    -> add empname not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 2
+mysql> alter table employee
+    -> add not null(empcity);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null(empcity)' at line 2
+mysql> alter table employee
+    -> set empCity not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set empCity not null' at line 2
+mysql> insert into employee(empid, empname, email)
+    -> values
+    -> (5,'rupesh','rupesh@gmail.com);
+    '>
+    '> \c
+    '> ');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-------+---------+---------+------------------------+
+| empId | empName | empCity | email                  |
++-------+---------+---------+------------------------+
+|     1 | Ram     | Pune    | ram@gmail.com          |
+|     2 | Sham    | Mumbai  | shaam@gamil.com        |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com       |
+|     4 | Hitman  | Shivali | hitman@gamil.com       |
+|     5 | rupesh  | NULL    | rupesh@gmail.com);
+
+c
+ |
++-------+---------+---------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+---------+------------------------+
+| empId | empName | empCity | email                  |
++-------+---------+---------+------------------------+
+|     1 | Ram     | Pune    | ram@gmail.com          |
+|     2 | Sham    | Mumbai  | shaam@gamil.com        |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com       |
+|     4 | Hitman  | Shivali | hitman@gamil.com       |
+|     5 | rupesh  | NULL    | rupesh@gmail.com);
+
+c
+ |
++-------+---------+---------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE employee
+    -> SET email = NULL
+    -> WHERE email = ' ';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------------+
+| empId | empName | empCity | email                  |
++-------+---------+---------+------------------------+
+|     1 | Ram     | Pune    | ram@gmail.com          |
+|     2 | Sham    | Mumbai  | shaam@gamil.com        |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com       |
+|     4 | Hitman  | Shivali | hitman@gamil.com       |
+|     5 | rupesh  | NULL    | rupesh@gmail.com);
+
+c
+ |
++-------+---------+---------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employee WHERE empid = 5;
++-------+---------+---------+------------------------+
+| empId | empName | empCity | email                  |
++-------+---------+---------+------------------------+
+|     5 | rupesh  | NULL    | rupesh@gmail.com);
+
+c
+ |
++-------+---------+---------+------------------------+
+1 row in set (0.00 sec)
+
+mysql> update employee
+    -> set email = 'rupesh@gamil.com'
+    -> where empid = 5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Sham    | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
+|     5 | rupesh  | NULL    | rupesh@gamil.com |
++-------+---------+---------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where empid = sham;
+ERROR 1054 (42S22): Unknown column 'sham' in 'where clause'
+mysql> select * from employee where empid = 2;
++-------+---------+---------+-----------------+
+| empId | empName | empCity | email           |
++-------+---------+---------+-----------------+
+|     2 | Sham    | Mumbai  | shaam@gamil.com |
++-------+---------+---------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> delete from employee where id = 5;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> delete from employee where empid = 5;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Sham    | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nagpur  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee
+    -> set empCity = Nashik
+    -> set empCity = 'Nashik'
+    -> where empid = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set empCity = 'Nashik'
+where empid = 3' at line 3
+mysql> update employee
+    -> set empcity = 'Nashik'
+    -> where empid = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Sham    | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nashik  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee
+    -> set empName = 'Tanmay'
+    -> where empid = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Tanmay  | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nashik  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where id = 4;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> select * from employee
+    -> where empid = 4;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee
+    -> where empcity is not null;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Tanmay  | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | Nashik  | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> update employee
+    -> set empcity = null
+    -> where empid = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     2 | Tanmay  | Mumbai  | shaam@gamil.com  |
+|     3 | Ganesh  | NULL    | ganesh@gamil.com |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where empcity is null;
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     3 | Ganesh  | NULL    | ganesh@gamil.com |
++-------+---------+---------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where empname = 'Ram' and empcity = 'mumbai';
+Empty set (0.00 sec)
+
+mysql> select * from employee where empname = 'Hitman' or empcity='Mumbai';
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     2 | Tanmay  | Mumbai  | shaam@gamil.com  |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * form employee where not empname = 'ganesh';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form employee where not empname = 'ganesh'' at line 1
+mysql> select * form employee where not empcity = 'nsk';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form employee where not empcity = 'nsk'' at line 1
+mysql> select * form employee where not empcity = 'shivali';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form employee where not empcity = 'shivali'' at line 1
+mysql> select * from employee where NOT empcity = 'Mumbai';
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where not empcity = 'Mumbai';
++-------+---------+---------+------------------+
+| empId | empName | empCity | email            |
++-------+---------+---------+------------------+
+|     1 | Ram     | Pune    | ram@gmail.com    |
+|     4 | Hitman  | Shivali | hitman@gamil.com |
++-------+---------+---------+------------------+
+2 rows in set (0.00 sec)
+
+mysql>
