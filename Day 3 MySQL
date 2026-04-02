@@ -254,3 +254,28 @@ mysql> select * from employee;
 10 rows in set (0.00 sec)
 
 mysql>
+where empid between 1 and 5' at line 1
+mysql> SELECT * FROM employee
+    -> WHERE empId BETWEEN 1 AND 5;
++-------+---------+---------+------------------+---------+------------+
+| empId | empName | empCity | email            | salary  | mobNum     |
++-------+---------+---------+------------------+---------+------------+
+|     1 | Rahul   | Pune    | rahul@gmail.com  | 45009.9 | 3242343243 |
+|     2 | Suresh  | Mumbai  | suresh@gmail.com | 56000.8 | 5767575766 |
+|     3 | Rohit   | Nashik  | rohit@gmail.com  | 78000.8 | 3274364866 |
+|     4 | Om      | Pune    | om@gmail.com     |   32001 | 2334364866 |
+|     5 | Rahul   | Bhopal  | rahul@gmail.com  | 89000.4 | 1234134366 |
++-------+---------+---------+------------------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee
+    -> where empid between 5 and 6;
++-------+---------+---------+-----------------+---------+------------+
+| empId | empName | empCity | email           | salary  | mobNum     |
++-------+---------+---------+-----------------+---------+------------+
+|     5 | Rahul   | Bhopal  | rahul@gmail.com | 89000.4 | 1234134366 |
+|     6 | Viraj   | Nagar   | viraj@gmail.com |   47334 |  234234234 |
++-------+---------+---------+-----------------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql>
