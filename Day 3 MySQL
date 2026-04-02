@@ -1,0 +1,256 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch1306          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use batch1306;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_batch1306 |
++---------------------+
+| employee            |
+| tkastd              |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+
+| empId | empName | empCity     | email            | salary  | mobNum      |
++-------+---------+-------------+------------------+---------+-------------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 |
++-------+---------+-------------+------------------+---------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from tkastd;
+Empty set (0.00 sec)
+
+mysql> drop tkastd;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tkastd' at line 1
+mysql> drop table tkastd;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Tsdd(studid int primary key auto_increment, studBirth date,studname varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc tsdd;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| studid    | int         | NO   | PRI | NULL    | auto_increment |
+| studBirth | date        | YES  |     | NULL    |                |
+| studname  | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tsdd values (2004-11-17, 'Ganesh'), (2005-12-4,'Viraj');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into tsdd(srudBirth, studname) values (2004-11-17, 'Ganesh'), (2005-12-4,'Viraj');
+ERROR 1054 (42S22): Unknown column 'srudBirth' in 'field list'
+mysql> insert into tsdd(studBirth, studname) values (2004-11-17, 'Ganesh'), (2005-12-4,'Viraj');
+ERROR 1292 (22007): Incorrect date value: '1976' for column 'studBirth' at row 1
+mysql> use tsdd;
+ERROR 1049 (42000): Unknown database 'tsdd'
+mysql> show tables;
++---------------------+
+| Tables_in_batch1306 |
++---------------------+
+| employee            |
+| tsdd                |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> use tsdd;
+ERROR 1049 (42000): Unknown database 'tsdd'
+mysql> select * form tsdd;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form tsdd' at line 1
+mysql> select * from tsdd;
+Empty set (0.00 sec)
+
+mysql> insert into tsdd values(2004-5-1,'viraj);
+    '> RollBack;
+    '> ;
+    '> ;);
+    '> /c
+    '> exit
+    '> ;;;
+    '> /;
+    '>
+    '> ^C
+mysql> desc tsdd;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| studid    | int         | NO   | PRI | NULL    | auto_increment |
+| studBirth | date        | YES  |     | NULL    |                |
+| studname  | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tsdd (studBirth, studname) values ( '2004-12-1','viraj');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tsdd (studBirth, studname) values ( '2005-1-26','raj');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tsdd (studBirth, studname) values ( '2012-5-6','ganesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tsdd (studBirth, studname) values ( '2011-10-24','ramesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tsdd;
++--------+------------+----------+
+| studid | studBirth  | studname |
++--------+------------+----------+
+|      1 | 2004-12-01 | viraj    |
+|      2 | 2005-01-26 | raj      |
+|      3 | 2012-05-06 | ganesh   |
+|      4 | 2011-10-24 | ramesh   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> -- above is the example of the auto increment
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2026-04-02 19:34:33 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime():
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 19:35:07  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+
+| empId | empName | empCity     | email            | salary  | mobNum      |
++-------+---------+-------------+------------------+---------+-------------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 |
++-------+---------+-------------+------------------+---------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+
+| empId | empName | empCity     | email            | salary  | mobNum      |
++-------+---------+-------------+------------------+---------+-------------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 |
++-------+---------+-------------+------------------+---------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select Sum(salary) from employee;
++-----------------+
+| Sum(salary)     |
++-----------------+
+| 961395.32421875 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from  employee;
++-------------+
+| min(salary) |
++-------------+
+|       32001 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|      443334 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(salary) from employee;
++---------------+
+| count(salary) |
++---------------+
+|            10 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from employee;
++-----------------+
+| avg(salary)     |
++-----------------+
+| 96139.532421875 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> -- This are the 5 aggregate functions used to perform the mathematical operations
+mysql> /* This fuctions are built in and helps to do the operations on the mathematical data */
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+
+| empId | empName | empCity     | email            | salary  | mobNum      |
++-------+---------+-------------+------------------+---------+-------------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 |
++-------+---------+-------------+------------------+---------+-------------+
+10 rows in set (0.00 sec)
+
+mysql>
