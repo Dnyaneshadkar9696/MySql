@@ -1,0 +1,573 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch1306          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> create table orders;
+ERROR 1046 (3D000): No database selected
+mysql> use batch1306;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_batch1306 |
++---------------------+
+| employee            |
+| tsdd                |
++---------------------+
+2 rows in set (0.01 sec)
+
+mysql> create table orders;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table orders(orderid int primary key, customername varchar(50), city varchar(50), product_name varchar(40), category varcahr(50),price dcimal, Quantity int, order_date date, payment_mode varchar,state varchar(40));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(50),price dcimal, Quantity int, order_date date, payment_mode varchar,st' at line 1
+mysql> create table orders(orderid int primary key, customername varchar(50), city varchar(50), product_name varchar(40), category varchar(50),price decimal, Quantity int, order_date date, payment_mode varchar,state varchar(40));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',state varchar(40))' at line 1
+mysql> create table orders(orderid int primary key, customername varchar(50), city varchar(50), product_name varchar(40), category varchar(50),price decimal, Quantity int, order_date date, payment_mode varchar,states varchar(40));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',states varchar(40))' at line 1
+mysql> create table orders(orderid int primary key, customername varchar(50), city varchar(50), product_name varchar(40), category varchar(50),price decimal, Quantity int, order_date date, payment_mode varchar(30) ,states varchar(40));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from orders;
+Empty set (0.00 sec)
+
+mysql> desc orders;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| orderid      | int           | NO   | PRI | NULL    |       |
+| customername | varchar(50)   | YES  |     | NULL    |       |
+| city         | varchar(50)   | YES  |     | NULL    |       |
+| product_name | varchar(40)   | YES  |     | NULL    |       |
+| category     | varchar(50)   | YES  |     | NULL    |       |
+| price        | decimal(10,0) | YES  |     | NULL    |       |
+| Quantity     | int           | YES  |     | NULL    |       |
+| order_date   | date          | YES  |     | NULL    |       |
+| payment_mode | varchar(30)   | YES  |     | NULL    |       |
+| states       | varchar(40)   | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into table orders values(1,'Ram', 'pune', 'laptop', 'electronic', 70000.00, 1, '2023-3-4', 'online', 'maharashtra');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table orders values(1,'Ram', 'pune', 'laptop', 'electronic', 70000.00, 1, '2023-' at line 1
+mysql> insert into table orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(1,'Ram', 'pune', 'laptop', 'electronic', 70000.00, 1, '2023-3-4', 'online', 'maharashtra');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table orders(orderid, customername,city, product_name, category, price, quantity' at line 1
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(1,'Ram', 'pune', 'laptop', 'electronic', 70000.00, 1, '2023-3-4', 'online', 'maharashtra');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from orders
+    -> ;
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+-------------+
+| orderid | customername | city | product_name | category   | price | Quantity | order_date | payment_mode | states      |
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+-------------+
+|       1 | Ram          | pune | laptop       | electronic | 70000 |        1 | 2023-03-04 | online       | maharashtra |
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(2,'Sham', 'Mumbai', 'Phone', 'electronic', 76000.00, 1, '2023-4-16', 'cash', 'Punjab');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(3,'Rahul', 'Nagpur', 'Headphone', 'electronic', 7000.00, 2, '2023-4-7', 'online', 'Assam');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(4,'Gayatri', 'Solapur', 'Chair', 'Furniture', 5600.00, 2, '2023-5-23', 'cash', 'Chennei');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(5,'Kavya', 'Kolhapur', 'WaterBottle', 'Accessaries', 600.00, 2, '2023-6-3', 'online', 'Uttarpradesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(6,'Samruddhi', 'Nashik', 'Table', 'Furniture', 8000.00, 1, '2023-4-16', 'online', 'punjab');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | maharashtra  |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab       |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam        |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei      |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Uttarpradesh |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+--------+
+| empId | empName | empCity     | email            | salary  | mobNum      | course |
++-------+---------+-------------+------------------+---------+-------------+--------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 | java   |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 | python |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 | java   |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 | java   |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 | python |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 | python |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 | java   |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 | java   |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 | python |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 | python |
++-------+---------+-------------+------------------+---------+-------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | maharashtra  |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab       |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam        |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei      |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Uttarpradesh |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> update orders
+    -> set states = MH14
+    -> where orderid = 1;
+ERROR 1054 (42S22): Unknown column 'MH14' in 'field list'
+mysql> update orders
+    -> set states = "MH14"
+    -> where orderid = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select  * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14         |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab       |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam        |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei      |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Uttarpradesh |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab       |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> update orders
+    -> ser states = "UP"
+    -> where orderid = 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'states = "UP"
+where orderid = 5' at line 2
+mysql> update orders
+    -> set states = "Up"
+    -> where orderid = 5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select  * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(7,'Kundan', 'Dhule', 'Fan', 'Electronic', 5000.00, 1, '2023-12-1', 'online', 'Karnataka');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(8,'Sujal', 'Amravati', 'Tshirts', 'Cloths', 8000.00, 4, '2023-8-19', 'cash', 'Karnataka');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(9,'Hemant', 'Ajili', 'HairOil', 'Accessaries', 800.00, 2, '2023-3-23', 'cash', 'Tamil Nadu');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(orderid, customername,city, product_name, category, price, quantity, order_date, payment_mode, states) values(10,'Rushali', 'Sumagaon', 'Curtains', 'Accessaries', 30000.00, 2, '2023-5-22', 'online', 'Gujrat');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states     |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14       |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab     |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam      |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei    |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up         |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab     |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Karnataka  |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Karnataka  |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Tamil Nadu |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat     |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update orders
+    -> set state = 'Kolkata'
+    -> where orderid = 8;
+ERROR 1054 (42S22): Unknown column 'state' in 'field list'
+mysql> update orders
+    -> set states = 'Kolkata'
+    -> where orderid = 8;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states     |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14       |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab     |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam      |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei    |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up         |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab     |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Karnataka  |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata    |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Tamil Nadu |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat     |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update orders
+    -> set states = 'Kolkata'
+    -> where orderid = 9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+--------+
+| empId | empName | empCity     | email            | salary  | mobNum      | course |
++-------+---------+-------------+------------------+---------+-------------+--------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 | java   |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 | python |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 | java   |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 | java   |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 | python |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 | python |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 | java   |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 | java   |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 | python |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 | python |
++-------+---------+-------------+------------------+---------+-------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+-----------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states    |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+-----------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14      |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab    |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam     |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei   |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up        |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab    |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Karnataka |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata   |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata   |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat    |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> update orders
+    -> set states = Goa
+    -> where orderid = 7;
+ERROR 1054 (42S22): Unknown column 'Goa' in 'field list'
+mysql> update orders
+    -> set states = 'Goa'
+    -> where orderid = 7;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++-------+---------+-------------+------------------+---------+-------------+--------+
+| empId | empName | empCity     | email            | salary  | mobNum      | course |
++-------+---------+-------------+------------------+---------+-------------+--------+
+|     1 | Rahul   | Pune        | rahul@gmail.com  | 45009.9 |  3242343243 | java   |
+|     2 | Suresh  | Mumbai      | suresh@gmail.com | 56000.8 |  5767575766 | python |
+|     3 | Rohit   | Nashik      | rohit@gmail.com  | 78000.8 |  3274364866 | java   |
+|     4 | Om      | Pune        | om@gmail.com     |   32001 |  2334364866 | java   |
+|     5 | Rahul   | Bhopal      | rahul@gmail.com  | 89000.4 |  1234134366 | python |
+|     6 | Viraj   | Nagar       | viraj@gmail.com  |   47334 |   234234234 | python |
+|     7 | Sairaj  | Nagpur      | sairaj@gmail.com |  443334 |  2343443234 | java   |
+|     8 | Ram     | Rameshwaram | ram@gmail.com    |   82370 |  2867866234 | java   |
+|     9 | Sham    | Kolkata     | sham@gmail.com   | 54000.4 | 98764354433 | python |
+|    10 | Vir     | Dholakput   | vir@gamil.com    | 34344.1 | 42342452543 | python |
++-------+---------+-------------+------------------+---------+-------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> -- Display all the orders places by the customers from  pune
+mysql> select city  from orders like "P%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like "P%"' at line 1
+mysql> select * from orders where city like "P%";
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+--------+
+| orderid | customername | city | product_name | category   | price | Quantity | order_date | payment_mode | states |
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+--------+
+|       1 | Ram          | pune | laptop       | electronic | 70000 |        1 | 2023-03-04 | online       | MH14   |
++---------+--------------+------+--------------+------------+-------+----------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> -- Display values with the same state
+mysql> select * from employee where states like "P%";
+ERROR 1054 (42S22): Unknown column 'states' in 'where clause'
+mysql> select * from orders where states like "P%";
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+| orderid | customername | city   | product_name | category   | price | Quantity | order_date | payment_mode | states |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+|       2 | Sham         | Mumbai | Phone        | electronic | 76000 |        1 | 2023-04-16 | cash         | Punjab |
+|       6 | Samruddhi    | Nashik | Table        | Furniture  |  8000 |        1 | 2023-04-16 | online       | punjab |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> -- now display the customers who are giving the online payment
+mysql> select * from orders where payment_mode like "o%";
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14   |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam  |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up     |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa    |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders where payment_mode like "c%";
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from orders
+    -> ;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> -- show all the orders with the price is greater than 5000
+mysql> select  * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders where price >5000;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from orders where Quantity between 2 and 5;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders where category like "e%" and "c%";
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from orders where category like "e%";
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+| orderid | customername | city   | product_name | category   | price | Quantity | order_date | payment_mode | states |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+|       1 | Ram          | pune   | laptop       | electronic | 70000 |        1 | 2023-03-04 | online       | MH14   |
+|       2 | Sham         | Mumbai | Phone        | electronic | 76000 |        1 | 2023-04-16 | cash         | Punjab |
+|       3 | Rahul        | Nagpur | Headphone    | electronic |  7000 |        2 | 2023-04-07 | online       | Assam  |
+|       7 | Kundan       | Dhule  | Fan          | Electronic |  5000 |        1 | 2023-12-01 | online       | Goa    |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from orders where category like "c%";
++---------+--------------+----------+--------------+----------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+----------+-------+----------+------------+--------------+---------+
+|       8 | Sujal        | Amravati | Tshirts      | Cloths   |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
++---------+--------------+----------+--------------+----------+-------+----------+------------+--------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders where customername like "S%";
++---------+--------------+----------+--------------+------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category   | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+------------+-------+----------+------------+--------------+---------+
+|       2 | Sham         | Mumbai   | Phone        | electronic | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture  |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths     |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
++---------+--------------+----------+--------------+------------+-------+----------+------------+--------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders
+    -> where product_name = 'phone';
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+| orderid | customername | city   | product_name | category   | price | Quantity | order_date | payment_mode | states |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+|       2 | Sham         | Mumbai | Phone        | electronic | 76000 |        1 | 2023-04-16 | cash         | Punjab |
++---------+--------------+--------+--------------+------------+-------+----------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where price desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select * from orders order by price desc;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql> -- The ascending and descending works with the order by
+mysql> select * from orders order by order_date asc;
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+| orderid | customername | city     | product_name | category    | price | Quantity | order_date | payment_mode | states  |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+|       1 | Ram          | pune     | laptop       | electronic  | 70000 |        1 | 2023-03-04 | online       | MH14    |
+|       9 | Hemant       | Ajili    | HairOil      | Accessaries |   800 |        2 | 2023-03-23 | cash         | Kolkata |
+|       3 | Rahul        | Nagpur   | Headphone    | electronic  |  7000 |        2 | 2023-04-07 | online       | Assam   |
+|       2 | Sham         | Mumbai   | Phone        | electronic  | 76000 |        1 | 2023-04-16 | cash         | Punjab  |
+|       6 | Samruddhi    | Nashik   | Table        | Furniture   |  8000 |        1 | 2023-04-16 | online       | punjab  |
+|      10 | Rushali      | Sumagaon | Curtains     | Accessaries | 30000 |        2 | 2023-05-22 | online       | Gujrat  |
+|       4 | Gayatri      | Solapur  | Chair        | Furniture   |  5600 |        2 | 2023-05-23 | cash         | Chennei |
+|       5 | Kavya        | Kolhapur | WaterBottle  | Accessaries |   600 |        2 | 2023-06-03 | online       | Up      |
+|       8 | Sujal        | Amravati | Tshirts      | Cloths      |  8000 |        4 | 2023-08-19 | cash         | Kolkata |
+|       7 | Kundan       | Dhule    | Fan          | Electronic  |  5000 |        1 | 2023-12-01 | online       | Goa     |
++---------+--------------+----------+--------------+-------------+-------+----------+------------+--------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> -- Above we printed the latest first of the date
+mysql> -- Now to find the total revenue
+mysql> select price, sum(price) from orders;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'batch1306.orders.price'; this is incompatible with sql_mode=only_full_group_by
+mysql> select sum(price) from orders;
++------------+
+| sum(price) |
++------------+
+|     211000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(price) from orders;
++------------+
+| avg(price) |
++------------+
+| 21100.0000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> -- to count the number of the orders are placed
+mysql> select count(Quantity) form orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'orders' at line 1
+mysql> select count(Quantity) from orders;
++-----------------+
+| count(Quantity) |
++-----------------+
+|              10 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>
